@@ -21,12 +21,13 @@ return new class extends Migration
 
         // Insertar roles por defecto
         DB::table('roles')->insert([
-            ['name' => 'admin'],
-            ['name' => 'odontologo'],
-            ['name' => 'asistente'],
-            ['name' => 'recepcionista'],
-            ['name' => 'gerente'],
-            ['name' => 'paciente'],
+            ['id' => 1, 'name' => 'admin'],
+            ['id' => 2, 'name' => 'odontologo'],
+            ['id' => 3, 'name' => 'asistente'],
+            ['id' => 4, 'name' => 'recepcionista'],
+            ['id' => 5, 'name' => 'gerente'],
+            ['id' => 6, 'name' => 'paciente'], // este será el rol por defecto
+            ['id' => 7, 'name' => 'cliente'],
         ]);
 
         // Crear tabla de usuarios con relación a roles
@@ -36,7 +37,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->foreignId('role_id')->constrained('roles')->default(1); // 1 = admin
+            $table->foreignId('role_id')->constrained('roles')->default(6); // 6 = paciente
             $table->rememberToken();
             $table->timestamps();
         });
